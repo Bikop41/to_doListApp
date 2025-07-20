@@ -1,72 +1,387 @@
-/* style.css */
-/* ... (CSS sebelumnya tetap sama) */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #4895ef;
+  --light-color: #f8f9fa;
+  --dark-color: #212529;
+  --success-color: #4cc9f0;
+  --danger-color: #f72585;
+  --warning-color: #f8961e;
+  --border-color: #dee2e6;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-/* Dropdown Kategori Custom */
+[data-theme="dark"] {
+  --primary-color: #3a86ff;
+  --secondary-color: #8338ec;
+  --light-color: #212529;
+  --dark-color: #f8f9fa;
+  --border-color: #495057;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  transition: all 0.3s ease;
+  line-height: 1.6;
+  padding: 20px;
+}
+
+/* Auth Modal */
+.modal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: var(--light-color);
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: var(--shadow);
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.modal-content input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal-content button {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.modal-content button:hover {
+  background-color: var(--secondary-color);
+}
+
+.error-message {
+  color: var(--danger-color);
+  margin-bottom: 15px;
+  min-height: 20px;
+  text-align: center;
+}
+
+/* App Container */
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+  padding: 30px;
+  transition: all 0.3s ease;
+  display: none;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+header h1 {
+  color: var(--primary-color);
+  font-size: 28px;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+#current-date {
+  color: var(--dark-color);
+  opacity: 0.8;
+  font-size: 14px;
+}
+
+#current-time {
+    font-size: 14px;
+  color: var(--dark-color);
+  opacity: 0.8;
+  margin-left: 10px;
+  transition: opacity 0.3s ease;
+}
+
+#current-time.updating {
+  opacity: 0.5;
+}
+
+/* Input Section */
+.input-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.input-section > * {
+  flex: 1;
+  min-width: 150px;
+}
+
+.input-section input, 
+.input-section select {
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: var(--light-color);
+  color: var(--dark-color);
+}
+
+.input-section button {
+  padding: 12px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.input-section button:hover {
+  background-color: var(--secondary-color);
+}
+
+/* Custom Dropdown */
 .custom-dropdown {
   position: relative;
-  flex: 1;
+  min-width: 180px;
 }
 
 .custom-dropdown select {
   width: 100%;
-  padding: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 5px;
-  background-color: var(--bg-color);
-  color: var(--text-color);
   appearance: none;
+  padding-right: 30px;
 }
 
 .dropdown-add-category {
   display: none;
   position: absolute;
-  bottom: -60px;
+  bottom: -90px;
   left: 0;
   right: 0;
-  background: var(--bg-color);
+  background-color: var(--light-color);
   border: 1px solid var(--border-color);
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   z-index: 10;
+  box-shadow: var(--shadow);
+  flex-direction: column;
+  gap: 8px;
 }
 
 .dropdown-add-category input {
-  width: calc(100% - 30px);
+  width: 100%;
   padding: 8px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
+  margin-bottom: 0;
 }
 
 .dropdown-add-category button {
-  width: 25px;
+  width: 100%;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.add-new-option {
+  color: var(--primary-color);
+  font-weight: semibold;
+  background-color: rgba(67, 97, 238, 0.1);
+  border-top: 1px solid var(--border-color);
+  margin-top: 5px;
+  padding-top: 8px;
+}
+
+/* Filter Section */
+.filter-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-btn {
+  padding: 8px 15px;
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+}
+
+.filter-btn:hover {
   background-color: var(--primary-color);
   color: white;
-  border: none;
-  border-radius: 4px;
+}
+
+.filter-btn.active {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+/* Task List */
+#task-list {
+  list-style: none;
+  margin-bottom: 20px;
+}
+
+#task-list li {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: var(--light-color);
+  border: 1px solid var(--border-color);
+  border-radius: 5px;
+  transition: all 0.3s;
+  position: relative;
+}
+
+#task-list li:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.task-checkbox {
+  margin-right: 15px;
+  transform: scale(1.3);
   cursor: pointer;
 }
 
-/* Auth Modal */
-#auth-modal .modal-content {
-  max-width: 300px;
+.task-text {
+  flex: 1;
+  margin-right: 15px;
+  word-break: break-word;
+}
+
+.task-category {
+  padding: 3px 10px;
+  background-color: var(--accent-color);
+  color: white;
+  border-radius: 20px;
+  font-size: 12px;
+  margin-right: 10px;
+}
+
+.task-deadline {
+  font-size: 12px;
+  color: var(--dark-color);
+  opacity: 0.7;
+  margin-right: 10px;
+}
+
+.task-actions {
+  display: flex;
+  gap: 5px;
+}
+
+.edit-btn, .delete-btn {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-size: 13px;
+}
+
+.edit-btn {
+  background-color: var(--warning-color);
+  color: white;
+}
+
+.delete-btn {
+  background-color: var(--danger-color);
+  color: white;
+}
+
+.completed .task-text {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+.no-tasks {
   text-align: center;
+  color: var(--dark-color);
+  opacity: 0.7;
+  padding: 20px;
 }
 
-#auth-modal input {
-  width: 100%;
-  margin: 10px 0;
-  padding: 10px;
+/* Task Stats */
+.task-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid var(--border-color);
+  font-size: 14px;
 }
 
-#auth-modal button {
-  width: 100%;
-  padding: 10px;
+#clear-completed {
+  background-color: transparent;
+  border: none;
+  color: var(--danger-color);
+  cursor: pointer;
+  font-size: 14px;
 }
 
-.error-message {
-  color: #dc3545;
-  min-height: 20px;
-  margin-bottom: 10px;
+/* Responsive */
+@media (max-width: 768px) {
+  .input-section > * {
+    flex: 100%;
+  }
+  
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .header-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .custom-dropdown {
+    min-width: 100%;
+  }
 }
-
-/* ... (CSS lainnya tetap sama) */

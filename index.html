@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,50 +7,68 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Login/Signup Modal -->
+  <!-- Auth Modal -->
   <div id="auth-modal" class="modal">
     <div class="modal-content">
       <h2 id="auth-title">Login</h2>
       <div id="auth-error" class="error-message"></div>
-      <input type="text" id="auth-username" placeholder="Username">
-      <input type="password" id="auth-password" placeholder="Password">
+      <input type="text" id="auth-username" placeholder="Username" autocomplete="username">
+      <input type="password" id="auth-password" placeholder="Password" autocomplete="current-password">
       <button id="auth-submit">Login</button>
       <p id="auth-switch">Don't have an account? <a href="#">Sign up</a></p>
     </div>
   </div>
 
-  <!-- Main App (Hidden until logged in) -->
-  <div class="todo-container" id="app-container" style="display:none">
+  <!-- Main App -->
+  <div class="app-container" id="app-container">
     <header>
-      <h1>My To-Do List</h1>
-      <div>
-        <span id="welcome-message"></span>
+      <h1><span id="greeting"></span>'s To-Do List</h1>
+      <div class="header-actions">
+        <span id="current-date"></span>
+        <span id="current-time"></span>
         <button id="logout-btn">Logout</button>
-        <button id="theme-toggle">🌓 Dark Mode</button>
+        <button id="theme-toggle">🌙 Dark Mode</button>
       </div>
     </header>
 
-    <div class="input-section">
-      <input type="text" id="task-input" placeholder="Masukkan task...">
-      
-      <!-- Dropdown Kategori Custom -->
-      <div class="custom-dropdown">
-        <select id="task-category">
-          <option value="" disabled selected>Pilih Kategori</option>
-          <!-- Kategori akan diisi oleh JavaScript -->
-        </select>
-        <div class="dropdown-add-category">
-          <input type="text" id="new-category-input" placeholder="Tambah kategori baru">
-          <button id="confirm-add-category">+</button>
+    <main>
+      <!-- Task Input Section -->
+      <div class="input-section">
+        <input type="text" id="task-input" placeholder="What needs to be done?">
+        
+        <!-- Custom Category Dropdown -->
+        <div class="custom-dropdown">
+          <select id="task-category">
+            <option value="" disabled selected>Select category</option>
+            <!-- Categories will be populated by JS -->
+            <option value="add-new" class="add-new-option">+ Add New Category</option>
+          </select>
+          <div class="dropdown-add-category">
+            <input type="text" id="new-category-input" placeholder="New category name">
+            <button id="confirm-add-category">Add</button>
+          </div>
         </div>
+        
+        <input type="date" id="task-deadline">
+        <button id="add-btn">Add Task</button>
       </div>
-      
-      <input type="date" id="task-deadline">
-      <button id="add-btn">Add Task</button>
-    </div>
 
-    <!-- Bagian lainnya tetap sama -->
-    <!-- ... -->
+      <!-- Task Filters -->
+      <div class="filter-section">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="active">Active</button>
+        <button class="filter-btn" data-filter="completed">Completed</button>
+      </div>
+
+      <!-- Task List -->
+      <ul id="task-list"></ul>
+
+      <!-- Task Counter -->
+      <div class="task-stats">
+        <span id="task-count">0 tasks</span>
+        <button id="clear-completed">Clear completed</button>
+      </div>
+    </main>
   </div>
 
   <script src="script.js"></script>
