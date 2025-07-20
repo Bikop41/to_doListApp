@@ -1,26 +1,62 @@
+<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple To-Do List</title>
+  <title>Advanced To-Do List</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="todo-container">
-    <h1>TO-DO LIST APP</h1>
-    
-    <!-- Input Task -->
+    <!-- Header dengan Toggle Dark Mode -->
+    <header>
+      <h1>My To-Do List</h1>
+      <button id="theme-toggle">🌓 Dark Mode</button>
+    </header>
+
+    <!-- Input Task dengan Kategori Custom -->
     <div class="input-section">
       <input type="text" id="task-input" placeholder="Masukkan task...">
+      <select id="task-category">
+        <!-- Kategori akan diisi oleh JavaScript -->
+      </select>
+      <button id="add-category-btn">+</button>
+      <input type="date" id="task-deadline">
       <button id="add-btn">Add Task</button>
     </div>
 
-    <!-- Daftar Task -->
+    <!-- Search Bar -->
+    <div class="search-section">
+      <input type="text" id="search-input" placeholder="Cari task...">
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <button onclick="filterTasks('all')">All</button>
+      <button onclick="filterTasks('active')">Active</button>
+      <button onclick="filterTasks('completed')">Completed</button>
+    </div>
+
+    <!-- Daftar Task (Drag & Drop) -->
     <ul id="task-list"></ul>
 
-    <!-- Total Task -->
-    <div class="task-counter">Total tasks: <span id="total-tasks">0</span></div>
+    <!-- Task Counter -->
+    <div class="task-counter">
+      Total tasks: <span id="total-tasks">0</span> | 
+      <button onclick="exportTasks()">Export Data</button>
+      <input type="file" id="import-file" accept=".json" style="display: none;">
+      <button onclick="document.getElementById('import-file').click()">Import Data</button>
+    </div>
+
+    <!-- Modal untuk Tambah Kategori -->
+    <div id="category-modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <input type="text" id="new-category" placeholder="Nama kategori baru">
+        <button id="save-category-btn">Simpan</button>
+      </div>
+    </div>
   </div>
 
   <script src="script.js"></script>
